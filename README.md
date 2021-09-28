@@ -2,13 +2,14 @@
 
 ## To do:
 
-### Database 
+### Database (Amina/Matt)
+- ? 
 
-### R shiny back-end
+### R shiny back-end (Amina/Giles)
 - Interface with database
 - Decide on appropirate data sub-sampling to pre-process for plotting
 
-### R shiny front-end 
+### R shiny front-end (Giles)
 - Metabolism estimation tab
   - Timeseries plots
     - GPP + Ecosystem Respiration (+CI) multiline plot
