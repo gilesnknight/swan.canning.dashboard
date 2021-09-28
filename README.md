@@ -10,6 +10,7 @@
     - Optional: add temperature and solar radiation lines to plot
   - Cloud plot of GPP and ER
     - Optional: add K600 to plot
+![Metabolism estimation tab](images/metabolismEstimation.svg)
 -   Visulisation tab
     -   WQ variable timeseries plots
         -   DO
