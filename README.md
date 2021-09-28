@@ -2,10 +2,11 @@
 
 ## To do
 - Metabolism estimation tab
-  - GPP + Ecosystem Respiration (+CI)
-    - Two lines on one plot
-  - DO predicted + DO observed
-    - Two lines on one plot
+  - Timeseries plots
+    - GPP + Ecosystem Respiration (+CI) multiline plot
+      - Two lines on one plot
+    - DO predicted + DO observed
+      - Two lines on one plot
     - Optional: add temperature and solar radiation lines to plot
   - Cloud plot of GPP and ER
     - Optional: add K600 to plot
