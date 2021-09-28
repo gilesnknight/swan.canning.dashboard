@@ -1,6 +1,14 @@
 # swan.canning.dashboard
 
-## To do
+## To do:
+
+### Database 
+
+### R shiny back-end
+- Interface with database
+- Decide on appropirate data sub-sampling to pre-process for plotting
+
+### R shiny front-end 
 - Metabolism estimation tab
   - Timeseries plots
     - GPP + Ecosystem Respiration (+CI) multiline plot
@@ -19,7 +27,7 @@
         -   Temperature
         -   Turbidity
         -   Specific conductivity
-        -   Chlorophyl A
+        -   Chlorophyll A
         -   fDOM
     -   Weather timeseries plots
         -   Rainfall
