@@ -1,0 +1,9 @@
+﻿Agency,Grouping,Station ID,Station Name,Lat,Lon,sensorID,colour
+DWER,WIR,616092,Walyunga,-32.065556,115.748056,sensor_repository_00748,#66c2a5
+DWER,WIR,616088,Gt Northern Hwy,-31.86270096,116.0139846,sensor_repository_00768,#8da0cb
+DWER,WIR,616084,Benara Rd,-32.87770254,115.9595256,sensor_repository_00756,#fc8d62
+DWER,WIR,616178,National Park,-31.88396119,116.094791,sensor_repository_00784,#e78ac3
+DWER,WIR,616099,River Rd,-31.81771154,116.0140509,sensor_repository_00796,#a6d854
+DWER,WIR,616189,Railway Pde,-31.75107132,116.0248301,sensor_repository_00800,#ffd92f
+DWER,WIR,616027,Seaforth,-32.09230454,116.0167718,sensor_repository_00804,#e5c494
+DWER,WIR,616086,Whiteman Rd,-31.90008109,116.0076115,sensor_repository_00812,#b3b3b3

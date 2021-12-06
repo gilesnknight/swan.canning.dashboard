@@ -1,0 +1,42 @@
+﻿Agency,Grouping,Station ID,Station Name,Lat,Lon,sensorID,colour
+BOM,IDY,-,Garden Island,-32.227073,115.682991,sensor_repository_00234,#66c2a5
+BOM,IDY,-,Rottnest,-32.0064404,115.5122858,sensor_repository_00627,#fc8d62
+BOM,IDY,-,Ocean Reef,-31.8647487,115.7618132,sensor_repository_00556,#8da0cb
+BOM,IDY,-,Swanbourne,-31.9857066,115.7607396,sensor_repository_00676,#e78ac3
+BOM,IDY,-,Melville Water,-31.99,115.83,sensor_repository_00493,#a6d854
+BOM,IDY,-,Perth Airport,-31.938698,115.965199,sensor_repository_00571,#ffd92f
+BOM,IDY,-,Perth Metro,-31.9497688,115.8491908,sensor_repository_00599,#e5c494
+BOM,IDY,-,Jandakot,-32.094593,115.87849,sensor_repository_00339,#b3b3b3
+BOM,IDO,71012,Hillarys Boat Harbour,-31.8256,115.7386,sensor_repository_01027,#80b1d3
+BOM,IDW,509378,Meadow Street Bridge (DWER),-31.86440399,116.0090827,,
+BOM,IDW,509484,Kent St Weir (DWER),-32.02138754,115.9211303,,
+BOM,IDW,509440,Barrack Street Jetty (DOT),-31.959694,115.85725,,
+DOT,TIDE,PTBAR02,Barrack St Jetty,-31.959694,115.85725,,
+DOT,TIDE,FFFBH01,Fremantle Harbour,-32.065556,115.748056,,
+DOT,TIDE,MHMAN02,Mandurah,-32.521931,115.714178,,
+DOT,TIDE,PLPEE01,Peel Inlet,-32.592209,115.7139,,
+DPIRD,MET,SP,SP,-31.991043,115.886068,,
+DPIRD,MET,FL,FL,-31.951181,115.792334,,
+DPIRD,MET,BG001,KP,-31.95887,115.83821,,
+DBCA,WQ,6163950,Guildford Downstream (Surface),-31.901,115.9618,,
+DBCA,WQ,6163951,Guildford Downstream (Bottom),-31.901,115.9618,,
+DBCA,WQ,6163948,Guildford Upstream (Surface),-31.9004,115.9614,,
+DBCA,WQ,6163949,Guildford Upstream (Bottom),-31.9004,115.9614,,
+DBCA,WQ,6164394,Caversham Downstream (Surface & Bottom),-31.88094437,115.9912599,,
+DBCA,WQ,6164648,Caversham Upstream (Surface & Bottom),-31.87769636,115.9928233,,
+DBCA,WQ,6164677,Nicholson Upstream,-32.0299118,115.9446347,,
+DBCA,WQ,6164685,Nicholson Downstream,-32.02456201,115.9348906,,
+DBCA,WQ,6163414,Bacon Upstream,-32.020756,115.930439,,
+DBCA,WQ,6163441,Bacon Downstream,-32.0252,115.9241,,
+UWA,AED,-,Kwilena Buoy,-31.99889749,115.8442536,,
+UWA,AED,-,Matilda Buoy,-31.9819283,115.822428,,
+UWA,AED,-,Como Jetty,-31.98365018,115.8450481,,
+DWER,WIR,616092,Walyunga,-32.065556,115.748056,sensor_repository_00748,
+DWER,WIR,616088,Gt Northern Hwy,-31.86270096,116.0139846,sensor_repository_00768,
+DWER,WIR,616084,Benara Rd,-32.87770254,115.9595256,sensor_repository_00756,
+DWER,WIR,616178,National Park,-31.88396119,116.094791,sensor_repository_00784,
+DWER,WIR,616099,River Rd,-31.81771154,116.0140509,sensor_repository_00796,
+DWER,WIR,616189,Railway Pde,-31.75107132,116.0248301,sensor_repository_00800,
+DWER,WIR,616027,Seaforth,-32.09230454,116.0167718,sensor_repository_00804,
+DWER,WIR,616082,Slade St,-32.92424579,115.9219488,,
+DWER,WIR,616086,Whiteman Rd,-31.90008109,116.0076115,sensor_repository_00812,
