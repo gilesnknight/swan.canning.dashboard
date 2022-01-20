@@ -1,19 +1,19 @@
 # Load packages
-library(shiny)
 library(bslib)
 library(RPostgreSQL)
 library(DBI)
-library(magrittr)
+library(shiny)
 library(dplyr)
 library(ggplot2)
 library(thematic)
 library(patchwork)
+library(magrittr)
 library(bslib)
 library(leaflet)
+library(htmltools)
 library(lubridate)
 library(sf)
 library(shinyWidgets)
-library(htmltools)
 
 
 # Define UI
@@ -30,6 +30,7 @@ ui <-
                 ),
                 column(8,
                     tabsetPanel(type = "tabs",
+
                         tabPanel(
                             "Flow",
                             plotOutput("hydroFlowPlot", height = "500px"),
@@ -70,16 +71,33 @@ ui <-
                                     )
                                 ),
                                 fluidRow(
-                                    column(9,
-                                        sliderInput("flowDateInput",
-                                            "Filter dates:",
-                                            min=as.Date("2019-01-01","%Y-%m-%d"),
-                                            max=as.Date("2021-12-22","%Y-%m-%d"),
-                                            value=c(as.Date("2020-01-01"), as.Date("2021-12-22")),
-                                            timeFormat="%Y-%m-%d",
-                                            width = '100%',
-                                            animate = animationOptions(1000)
+                                    column(
+                                        6,
+                                        dateInput(
+                                            "dateFrom",
+                                            label = "From:"
                                         )
+                                    ),
+                                    column(
+                                        6,
+                                        dateInput(
+                                            "dateTo",
+                                            label = "To:"
+                                        )
+                                    )
+                                ),
+                                fluidRow(
+                                    column(9,
+                                        # sliderInput("flowDateInput",
+                                        #     "Filter dates:",
+                                        #     min=as.Date("2019-01-01","%Y-%m-%d"),
+                                        #     max=as.Date("2021-12-22","%Y-%m-%d"),
+                                        #     value=c(as.Date("2020-01-01"), as.Date("2021-12-22")),
+                                        #     timeFormat="%Y-%m-%d",
+                                        #     width = '100%',
+                                        #     animate = animationOptions(1000)
+                                        # )
+                                        uiOutput("flowDateInput")
                                     ),
                                     column(3,
                                         tags$style(
@@ -313,8 +331,8 @@ ui <-
 
 
 
-
-setwd('/Users/gilesknight/Documents/GitHub/swan.canning.dashboard/shiny/R/')
+setwd('/Users/gilesknight/Documents/GitHub/swan.canning.dashboard/deprecated/shiny/R/')
+#setwd('/Users/gilesknight/Documents/GitHub/swan.canning.dashboard/shiny/R/')
 # Define server function
 server <- function(input, output, session) {
      drv <- dbDriver("PostgreSQL")
@@ -411,6 +429,19 @@ server <- function(input, output, session) {
 
     })
 
+    output$flowDateInput  <- renderUI({
+        sliderInput(
+            "flowDateInput",
+            "Filter dates:",
+            min=as.Date(input$dateFrom),
+            max=as.Date(input$dateTo),
+            value=c(as.Date(input$dateFrom), as.Date(input$dateTo)),
+            timeFormat="%Y-%m-%d",
+            width = '100%',
+            animate = animationOptions(1000)
+        )
+    })
+
     ### HYDROLOGY
     # FLOW
     observeEvent(input$plotHydroFlow,{
@@ -427,6 +458,14 @@ server <- function(input, output, session) {
         )
         for (i in selectedSites) {
             sensorData  <- tbl(conn, i) %>% as.data.frame()
+            # sensorData  <- tbl(conn, selectedSites)
+            # query  <- sensorData  %>%
+            #             filter(
+            #                 st_feed_date_jdn >= 2458839 &
+            #                 st_feed_date_jdn <= 2458840
+            #             )
+            # #query %>% show_query()
+            # sensorData  <-  query %>% dplyr::collect()
 
             sensorData$datetime  <- as.POSIXlt(sensorData$st_feed_date_jdn*86400,
                                 origin=structure(-210866760000,
@@ -438,7 +477,7 @@ server <- function(input, output, session) {
         }
         dbDisconnect(conn)
 
-        #selectedSites  <- c("sensor_repository_00748", "sensor_repository_00768")
+        selectedSites  <- c("sensor_repository_00748", "sensor_repository_00768")
         colourFilter  <-   sensorColours$code %in% selectedSites
         colourFilter  <- sensorColours[colourFilter, "colour"]
 
