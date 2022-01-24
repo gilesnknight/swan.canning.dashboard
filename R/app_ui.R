@@ -18,17 +18,25 @@ app_ui <- function(request) {
         fluidRow(
           column(
             4,
-            leaflet::leafletOutput("hydroMap", height = '100%')
+            leaflet::leafletOutput("hydroMap", height = '700px')
           ),
           column(
             8,
             tabsetPanel(
+              id = "hydroTabset",
               type = "tabs",
               tabPanel(
                 title = "Flow",
+                style = "overflow-y:scroll; max-height: 700px",
                 plotOutput("hydroFlowPlot", height = "500px"),
-                sensorCheckBoxUI(namespace = "hydroFlow",sensorInfo = sensorInfo),
+                tags$details(
+                  tags$summary(HTML("Select sites <i>(click to expand)</i>:")),
+                  sensorCheckBoxUI(namespace = "hydroFlow",sensorInfo = sensorInfo)
+                ),
                 timeseriesUI(namespace = "hydroFlow")
+              ),
+              tabPanel(
+                title = "test"
               )
             )
           )

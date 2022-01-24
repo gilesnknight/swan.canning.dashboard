@@ -30,10 +30,14 @@ golem::add_module( name = "timeseriesFetch" )
 ## Add helper functions ----
 ## Creates fct_* and utils_*
 golem::add_fct( "plots" ) 
-golem::add_fct( "plotLine" ) 
+golem::add_fct( "plotLine" )
+golem::add_fct( "plotSlider" )
 golem::add_fct( "databaseConnect" )
 golem::add_fct( "timeseriesUI" )
 golem::add_fct( "sensorCheckBoxUI" )
+golem::add_fct( "activeSensorColours" )
+golem::add_fct( "sensorMapMarkers" )
+golem::add_fct( "webMap" )
 golem::add_utils( "helpers" )
 
 ## External resources

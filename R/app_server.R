@@ -7,45 +7,55 @@
 app_server <- function( input, output, session ) {
   # Your application server logic 
   
-  print(sensorInfo)
-  
   #### WEATHER ####
   
  
   
   #### HYDRO ####
   
-  # Leaflet web-map
+  # Filter sensorInfo data to only hydro sensors
+  hydroSensorInfo <- sensorInfo[sensorInfo[["group"]]=="hydro",]
+  
+  # Generates blank hydro tab web-map
   output$hydroMap <- leaflet::renderLeaflet({
-    leaflet::leaflet() %>%
-      leaflet::addTiles(urlTemplate = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}') %>%
-      leaflet::setView(115.8613, -31.9523, 8) 
+    webMap()
   })
   
-  # Update slider from calander date inputs
-  output$hydroFlowDateSlider <- renderUI({
-    sliderInput(
-      inputId = "hydroFlowDateSlider",
-      "Filter dates:",
-      min = as.Date(input$hydroFlowDateFrom),
-      max = as.Date(input$hydroFlowDateTo),
-      value = c(
-        as.Date(input$hydroFlowDateFrom),
-        as.Date(input$hydroFlowDateTo)
+  # On panel change within the Hydro tabset, update map markers to reflect graphable sensors
+  observeEvent(input$hydroTabset,{
+    switch(
+      input$hydroTabset,
+      "Flow" = sensorMapMarkers(
+        mapID = "hydroMap", 
+        data = hydroSensorInfo, 
+        subGroup = input$hydroTabset
         ),
-      timeFormat="%Y-%m-%d",
-      width = '100%',
-      animate = animationOptions(1000)
+      "test" = sensorMapMarkers(
+        mapID = "hydroMap", 
+        data = hydroSensorInfo, 
+        subGroup = input$hydroTabset
+      )
+    )
+  })
+  
+  # Update slider from calendar date inputs
+  output$hydroFlowDateSlider <- renderUI({
+    plotSlider(
+      inputID = "hydroFlowDateSlider",
+      minDate = input$hydroFlowDateFrom,
+      maxDate = input$hydroFlowDateTo
     )
   })
   
   # On button click, fetch sensor data from SCEVO and graph
   observeEvent(input$hydroFlowFetchData,{ 
-    hydroFlowData <- databaseConnect(sensorCodes = input$hydroFlowSiteCheckBox) #c("sensor_repository_00234", "sensor_repository_00627")
+    hydroFlowData <- databaseConnect(sensorCodes = input$hydroFlowSiteCheckBox) 
     
-    hydroFlowSelectedSites <-  input$hydroFlowSiteCheckBox
-    hydroFlowDataColours <-  sensorInfo$sensorCode %in% hydroFlowSelectedSites
-    hydroFlowDataColours <- sensorInfo[hydroFlowDataColours, "colour"]
+    # Get line plot colours for selected sensors
+    hydroFlowDataColours <- activeSensorColours(
+      checkBoxInputs = input$hydroFlowSiteCheckBox,
+      sensorInfo = hydroSensorInfo
+    )
     
     # Generate line graph from fetched data and diplay between slider dates
     output$hydroFlowPlot <- renderPlot({
@@ -54,15 +64,17 @@ app_server <- function( input, output, session ) {
         datetime >= as.POSIXct(input$hydroFlowDateSlider[1]),
         datetime <= as.POSIXct(input$hydroFlowDateSlider[2])
       )
-      plotLine(
-        plotData = hydroFlowData,
-        plotDataX = "datetime",
-        plotDataY = "st_value_1",
-        plotDataGroup = "st_sensor_code",
-        plotLabelX = "Date",
-        plotLabelY = "Flow (m3/s)",
-        plotDataColours = hydroFlowDataColours
-      )
+    
+    # Plot the graph    
+    plotLine(
+      plotData = hydroFlowData,
+      plotDataX = "datetime",
+      plotDataY = "st_value_1",
+      plotDataGroup = "st_sensor_code",
+      plotLabelX = "Date",
+      plotLabelY = "Flow (m3/s)",
+      plotDataColours = hydroFlowDataColours
+    )
     })
   })
    

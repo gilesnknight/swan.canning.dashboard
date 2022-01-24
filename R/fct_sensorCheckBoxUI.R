@@ -24,7 +24,7 @@ sensorCheckBoxUI <- function(namespace,sensorInfo){
         fluidRow(
           checkboxGroupInput(
             inputId = paste0(namespace,"SiteCheckBox"),
-            label = "Select sites:",
+            label = NULL,#"Select sites:",
             inline = TRUE,
             choiceNames = choiceNames,
             choiceValues =  sensorInfo[,"sensorCode"]
